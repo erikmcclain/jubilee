@@ -2,20 +2,127 @@
 
 All changes between releases are tracked here.
 
-## (In Progress) rel/jubilee 2.0.3 (est: mid-May)
-- The frame now primarily uses metal corner plates
-    - These are both stiffer and serve as motor heatsinks
-- The toolchanger now uses an LDO motor
+
+## rel/jubilee 2.1.2 - Aug 17, 2020
+- Injection Molded Delrin Wedge Plates are now the standard for designing tool plates. Fixes [Issue #43](https://github.com/machineagency/jubilee/issues/43)
+  - added injection molding specs sheet and STEP file with draft angles.
+- Side and Back Panels for the frame are now available in HDPE from Filastruder. They are line items in the BOM.
+- Added DXFs of Side and Back Panels to the machineable parts folder. These variants are router-friendly with the inclusion of Dogbone Fillets on inside corners for machining with up to a 3.175mm (1/8th in.) diameter endmill.
+- Tool Change Macros have been rewritten for more general use cases.
+  - Tool Change Macros restore the Z height before pulling out the tool. This prevents tools from crashing into the bed when changing from a short to a tall tool.
+- config.g machine XY origin adjusted to reflect the documentation. (It was off by a couple mm.) Fixes [Issue #88](https://github.com/machineagency/jubilee/issues/88)
+- Parking Post Part Number Corrected. The XX in PPBXX-04 and THXX-04 now reflect the dowel pin center-to-center distance.
+  - PPB47-04 and TH47-04 regenerated, which are the correct parking post files for the pen tool.
+  - PPB55-04 and TH55-04 created, which are the correct parking post files for the default extruder.
+- Logo added to the main repository, courtesy of @troll on Discord
+
+### Shopping List Changes
+- Online Metals is now no longer a required supplier for frame components.
+  - Side panel raw material has been replaced with three already-machined side panels from Filastruder.
+
+## rel/jubilee 2.1.1 - June 27, 2020
+
+- REL Changes/Updates
+  - Fixed Pulley tab is now slightly shorter to prevent rubbing on the back panel
+  - Base Plate now accommodates a 3.0 or 3.2mm back panel
+  - Base Plate motor distance to the back panel has been moved back 1mm for extra clearance for the Fixed Pulley tab.
+  - Wire Rope Exit Holes are slightly wider on the base plate.
+- Carriage Changes
+  - Carriage Center Plate has four holes on the bottom to adjust the screws on the MGN12 Carriage without removing the front and back plates.
+  - Wire Rope Exit Holes are slightly wider on SGC-02.
+- Feet are now 46mm tall to accommodate heat sinks.
+- Z-axis motors now use proper thrust bearings instead of two ring shims.
+- Power Supply holder has one fewer fastener and more fastener hole clearance such that it can be screwed on with the socket installed
+
+
+### Changes to Printed Parts
+- [CCP-04](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/toolchanger/toolchange_carriage/carriage_center_plate.STL)
+- [z Thrust Bearing Spacer](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/frame/z_thrust_bearing_spacer.STL)
+- [SGC-02](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/toolchanger/toolchange_carriage/spring_guide_capture.STL)
+- [PSH-02](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/frame/psu_socket_holder.STL)
+
+- Taller Feet
+  - [FLF-05](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/frame/front_left_foot.STL)
+  - [FRF-05](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/frame/front_right_foot.STL)
+  - [BLF-05](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/frame/back_left_foot.STL)
+  - [BRF-05](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/frame/back_right_foot.STL)
+
+- REL Parts
+  - StepperOnline [Motor Clip](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/toolchanger/toolchanger_locking_mechanism/stepper_online/lock_actuator_motor_clip.STL)
+  - StepperOnline Base Plate [RLB-10S](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/toolchanger/toolchanger_locking_mechanism/stepper_online/lock_actuator_base_plate.STL)
+  - LDO [Motor Clip](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/toolchanger/toolchanger_locking_mechanism/lock_actuator_motor_clip.STL)
+  - LDO Base Plate [RLB-10](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/toolchanger/toolchanger_locking_mechanism/lock_actuator_base_plate.STL)
+  - [Fixed Pulley](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/toolchanger/toolchanger_locking_mechanism/fixed_half_pulley.STL)
+
+### Shopping List Changes
+- -1 M5 Drop-in T Nut
+- -1 M5 8mm Buttonhead Screw
+- +3 5.08mm ID thrust bearings for Z axis
+- -6 M5, 10mm OD Shim
+
+## rel/jubilee 2.1.0 - May 29, 2020 
+
+- The toolchanger now uses either an LDO Motor or the original StepperOnline motor. You must print the motor clip and base plate pertaining to the motor you have.
 - The Remote Elastic Lock now uses an actual spring instead of cut spring guide
-    - 1000 were made in China and distributed to various Jubilee resellers
+    - 1000 were made in China and distributed to various Jubilee part resellers
+- The frame now uses metal motor plates by default
+    - These are both stiffer and serve as motor heatsinks
+- The shopping list no longer features the embedded mag plate as the default and instead lists a plain plate with a high-temp magnetic sticky sheet.
 - The bed plate has additional holes for:
     - a replaceable thermal fuse
 	- a spring-steel cable chain
-	- other peripherals bolted to the front of the machine (z probing?? XY camera probing??)
-- All square nuts have been removed and replaced with metal hubs
+- The fan shroud screw holes for the Default Tool Plate have been lowered a couple mm.
+- The Default Tool Plate has a small chamfer to improve printability (This change removes the effect of elephant's foot.)
+- Added Frame Wiring Diagram and Default Extruder Tool Wiring Diagram
+- Z-axis motors now have two stacked shims instead of one to reduce wear on the coupler
+- Remote Elastic Lock redesign and compatible with both StepperOnline and LDO motor options
 
-## Changes to Printed Parts
-- Printed Pulley Spacer can now be clipped in after the fact to ensure shims were installed correctly beforehand.
+### Changes to Printed Parts
+- Printed Pulley Spacer can now be clipped in after-the-fact to ensure shims were installed correctly beforehand.
+- Twist Lock Spacer outer diameter reduced for better printability across a range of printers
+- Carriage Center Plate now has heat set inserts
+- Z-axis motor plates
+    - now have a chamfer on the bottom surface for better printability across a range of printers. (This change removes the effect of elephant's foot.)
+	- Cutout for vertical extrusions has also been shrunk such that it can act as a locating feature.
+    - offset added between the motor and the plate such that the leadscrews don't "bottom out" inside the coupler
+- Z Motor Spacer height adjustment to accommodate for Z-axis motor plate change
+- Feet are now 5mm taller to make space for optional heatsinks
+- Added thumb handle to the Remote Elastic Lock
+
+### Shopping List Changes
+- +1 Subtle Design Mag Sheet
+- +1 plain cast tool build plate
+- -1 embedded magnet cast tool build plate
+- +1 Motor Plate Set
+- +4 M4 Shoulder Screw, 16mm long, 5mm diameter
+- -4 M4 Shoulder Screw, 12mm long, 5mm diameter
+- +12 M3 buttonhead screws, 12mm long; -12 M3 buttonhead screws, 10mm long 
+- +1 Remote Elastic Lock Hub
+- +1 Remote Elastic Lock Extension Spring
+- +1 longer sleeve bearing, -1 old length sleeve bearing
+- +1 M3 Set Screw, 5mm long for Remote Elastic Lock Hub
+- +10 M3 Tapered Heat Set Inserts, 22 total
+- -2 M5 Buttonhead Screw, 14mm long
+- -0.0625in Delrin plate. No longer necessary with the new Remote Elastic Lock
+
+### Updating from 2.0.2 to 2.1.0
+
+#### Major Improvements
+- double up Z Axis Shim.
+- If your shim rings on the XY motion system had a 10mm outer diameter, swap them for shim rings with a 7 or 8mm outer diameter.
+
+#### Negligible Improvements
+- Replace Z Motor Plates and Z Motor Spacers.
+- Replace Carriage Center Plate
+- Replace Carriage Back Plate
+- Replace Remote Elastic Lock. (Don't actually do this unless you haven't assembled it yet.)
+
+## Hotfix to Jubilee 2.0.2 - May 18, 2020
+If your are using printed corner plates, not the Delrin plates, and they do not fit with your pulley stackup, reprint these updated versions. This version is slightly more forgiving adding 0.2mm of tolerance in the Z dimension.
+- LXR-03 [Left Crossbar Pulley Reinforcement Plate](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/frame/left_crossbar_pulley_reinforcement_plate.STL) has a smaller diameter offset face to not interfere with the pulleys. Also: chamfer for easier shoulder screw insertion
+- RXR-03 [Right Crossbar Pulley Reinforcement Plate](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/frame/right_crossbar_pulley_reinforcement_plate.STL)  has a smaller diameter offset face to not interfere with the pulley. Also: chamfer for easier shoulder screw insertion
+- LCR-03 [Left Corner Pulley Reinforcement Plate](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/frame/left_corner_pulley_reinforcement_plate.STL) has a smaller diameter offset face to not interfere with the pulley. Also: chamfer for easier shoulder screw insertion
+- RCR-03 [Right Corner Pulley Reinforcement Plate](https://github.com/machineagency/jubilee/blob/master/frame/fabrication_exports/3d_printed_parts/frame/right_corner_pulley_reinforcement_plate.STL) has a smaller diameter offset face to not interfere with the upper pulley. Also: chamfer for easier shoulder screw insertion
 
 ## Hotfix to Jubilee 2.0.2 - April 27, 2020
 If your are using printed corner plates, not the Delrin plates, reprint them:
